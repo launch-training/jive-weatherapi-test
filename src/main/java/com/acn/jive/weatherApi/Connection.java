@@ -6,7 +6,7 @@ import java.net.URL;
 
 public class Connection {
 
-    public static HttpURLConnection fetchApiResponse(String urlString){
+    public HttpURLConnection fetchApiResponse(String urlString){
         try{
             // attempt to create connection
             URL url = new URL(urlString);

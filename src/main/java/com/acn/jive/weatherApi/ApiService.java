@@ -5,6 +5,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ApiService {
@@ -30,12 +31,20 @@ public class ApiService {
             // 3. Parse the string into a JSON Object
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(jsonResponse);
+            JSONObject locationWeatherJson = (JSONObject) jsonObject.get("location");
             JSONObject currentWeatherJson = (JSONObject) jsonObject.get("current");
+            JSONObject condition = (JSONObject) currentWeatherJson.get("condition");
 //            System.out.println(currentWeatherJson.toJSONString());
 
             // 4. Store the data into their corresponding data type
             double temperature = (double) currentWeatherJson.get("temp_c");
             System.out.println("Current Temperature (C): " + temperature);
+
+            String desciption = (String) condition.get("text");
+            System.out.println("Description: " + desciption);
+
+            String localDate = (String) locationWeatherJson.get("localtime");
+            System.out.println("Local time: " + localDate);
 
         }catch(Exception e){
             e.printStackTrace();

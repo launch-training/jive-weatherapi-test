@@ -7,10 +7,11 @@ import org.json.simple.parser.JSONParser;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class WeatherApiApp2 {
-    public static void main(String[] args) {
+    public void run() {
         Connection connection = new Connection();
         ApiService apiService = new ApiService();
         try{
@@ -32,6 +33,11 @@ public class WeatherApiApp2 {
             e.printStackTrace();
         }
 
+    }
+
+    public static void main(String[] args) {
+        WeatherApiApp2 main = new WeatherApiApp2();
+        main.run();
     }
 
 
