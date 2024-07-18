@@ -5,7 +5,8 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class ApiService {
@@ -43,8 +44,21 @@ public class ApiService {
             String desciption = (String) condition.get("text");
             System.out.println("Description: " + desciption);
 
-            String localDate = (String) locationWeatherJson.get("localtime");
-            System.out.println("Local time: " + localDate);
+            String dateTime = (String) locationWeatherJson.get("localtime");
+            System.out.println("Local time: " + dateTime);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime localDateTime = LocalDateTime.parse(dateTime, formatter);
+
+            String iconUrl = (String) condition.get("icon");
+            System.out.println("URL: " + iconUrl);
+
+
+            Weather weather = new Weather();
+            weather.setCity(city);
+            weather.setTemperature(temperature);
+            weather.setDescription(desciption);
+            weather.setLocalTime(localDateTime);
+            weather.setIconUrl(iconUrl);
 
         }catch(Exception e){
             e.printStackTrace();
