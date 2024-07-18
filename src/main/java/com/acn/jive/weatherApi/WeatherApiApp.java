@@ -72,6 +72,7 @@ public class WeatherApiApp {
             // 1. Fetch the API response based on API Link
             String url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude +
                     "&longitude=" + longitude + "&current=temperature_2m,relative_humidity_2m,wind_speed_10m";
+
             HttpURLConnection apiConnection = fetchApiResponse(url);
 
             // check for response status
