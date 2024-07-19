@@ -16,8 +16,8 @@ public class ApiService {
         try{
             // 1. Fetch the API response based on API Link
             String API_KEY = "437ff40d4bf2412581d135526241807";
-            String url = "https://api.weatherapi.com/v1/current.json?key=" + API_KEY + "&q=" + city;
-            HttpURLConnection apiConnection = connection.fetchApiResponse(url);
+            String url = "https://api.weatherapi.com/v1/current.json?key=" + API_KEY + "&q=" + city; // ab ? request param
+            HttpURLConnection apiConnection = connection.createApiConnection(url);
 
             // check for response status
             // 200 - means that the connection was a success
@@ -52,7 +52,7 @@ public class ApiService {
             String iconUrl = (String) condition.get("icon");
             System.out.println("URL: " + iconUrl);
 
-
+            // create object
             Weather weather = new Weather();
             weather.setCity(city);
             weather.setTemperature(temperature);
